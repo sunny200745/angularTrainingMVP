@@ -15,19 +15,26 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'chieffancypants.loadingBar',
+    'ui.router'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+  .config(["$locationProvider", "$stateProvider", "$urlRouterProvider", "$httpProvider", "cfpLoadingBarProvider", function($locationProvider, $stateProvider, $urlRouterProvider, $httpProvider, cfpLoadingBarProvider) {
+    $stateProvider
+      .state('home', {
+        url: "/home",
+        data: {title: "Home"},
+        views: { 
+          'header': { templateUrl: 'views/common/header.html', controller: 'HeaderCtrl' },
+          'main': { templateUrl: 'views/login.html', controller: 'MainCtrl' },
+          'footer': { templateUrl: 'views/common/footer.html', controller: 'FooterCtrl' }
+        }
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+
+      $urlRouterProvider.otherwise('/home');
+      cfpLoadingBarProvider.includeSpinner = false;
+
+    
+    }]).run(function ($state,$rootScope) {
+      $rootScope.$state = $state;
+    });  

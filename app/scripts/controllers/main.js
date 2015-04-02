@@ -8,10 +8,29 @@
  * Controller of the angularTrainingMvpApp
  */
 angular.module('angularTrainingMvpApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('MainCtrl',['$scope', '$location', 'cfpLoadingBar',function($scope, $location, cfpLoadingBar){
+		
+		$scope.fn_login = function () {		
+			cfpLoadingBar.start();
+			cfpLoadingBar.inc();
+			/*var userObj = {
+				'email' : $scope.email,
+				'password' : $scope.password
+			}    
+		   
+	        Auth.login(userObj).then(function () {
+	        	cfpLoadingBar.complete();
+	        	var users = [];
+    			angular.forEach(xebiaData.all,function(val, index){
+    				users.push(val.NAME);				
+    			});
+    			dataService.setUserData(users);
+
+	        	$location.path( "/dashboard" );	
+	        }, function (error) {
+		      $scope.error = error.code.split('_')[1]
+		      cfpLoadingBar.complete();
+		    })*/
+		};
+		
+	}])
