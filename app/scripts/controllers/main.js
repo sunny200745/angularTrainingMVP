@@ -8,16 +8,23 @@
  * Controller of the angularTrainingMvpApp
  */
 angular.module('angularTrainingMvpApp')
-  .controller('MainCtrl',['$scope', '$location', 'cfpLoadingBar',function($scope, $location, cfpLoadingBar){
+  .controller('MainCtrl',['$scope', '$location', 'cfpLoadingBar','dataService','$timeout',function($scope, $location, cfpLoadingBar, dataService, $timeout){
 		
 		$scope.fn_login = function () {		
 			cfpLoadingBar.start();
 			cfpLoadingBar.inc();
-			/*var userObj = {
+			var userObj = {
 				'email' : $scope.email,
 				'password' : $scope.password
 			}    
-		   
+			dataService.loginCheck(userObj,function(d){
+				$timeout(function(){
+					console.debug(d)
+					cfpLoadingBar.complete();
+				},2000)
+				
+			})
+		   /*
 	        Auth.login(userObj).then(function () {
 	        	cfpLoadingBar.complete();
 	        	var users = [];

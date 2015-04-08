@@ -33,7 +33,8 @@ angular
 
       $urlRouterProvider.otherwise('/home');
       cfpLoadingBarProvider.includeSpinner = false;
-
+      var login={'email':'sunny.200745@gmail.com','password':'1234'}
+      localStorage.setItem('loginObject',JSON.stringify(login));
     
     }]).run(function ($state,$rootScope) {
       $rootScope.$state = $state;
