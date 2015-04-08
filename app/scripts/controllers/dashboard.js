@@ -8,15 +8,19 @@
  * Controller of the angularTrainingMvpApp
  */
 angular.module('angularTrainingMvpApp')
-  .controller('DashboardCtrl', function ($scope) {
-   	$//scope.users = dataService.getUserData();
+  .controller('DashboardCtrl',['$scope', 'dataService', function ($scope, dataService) {
+   	
+   	$scope.users = dataService.getUserData();
+   	console.debug($scope.users)
+
+
    	$scope.fn_profileSearch = function(){
    		if(!$scope.searchContent){
    			return false;
    		}else{
    			
    			var xebiaId, xebeeName = $scope.searchContent;				
-   			angular.forEach(xebiaData.all,function(val, index){
+   			angular.forEach($scope.users,function(val, index){
    				if(xebeeName == val.NAME){
    					xebiaId = val.ID;
    					dataService.setSearchedData(val);
@@ -32,4 +36,4 @@ angular.module('angularTrainingMvpApp')
 
    		
    	};
-  });
+  }]);
