@@ -21,6 +21,10 @@ angular.module('angularTrainingMvpApp')
 				$timeout(function(){
 					console.debug(d)
 					cfpLoadingBar.complete();
+
+					if(d){
+						$location.path( "/dashboard" );	
+					}
 				},2000)
 				
 			})

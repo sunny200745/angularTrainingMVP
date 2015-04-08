@@ -30,6 +30,15 @@ angular
           'footer': { templateUrl: 'views/common/footer.html', controller: 'FooterCtrl' }
         }
       })
+      .state('dashboard', {
+        url: "/dashboard",
+        data: {title: "Dashboard"},
+        views: { 
+          'header': { templateUrl: 'views/common/header.html', controller: 'HeaderCtrl' },
+          'main': { templateUrl: 'views/dashboard.html', controller: 'DashboardCtrl' },
+          'footer': { templateUrl: 'views/common/footer.html', controller: 'HeaderCtrl' }
+        }
+      })
 
       $urlRouterProvider.otherwise('/home');
       cfpLoadingBarProvider.includeSpinner = false;
