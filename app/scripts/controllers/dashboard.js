@@ -8,7 +8,7 @@
  * Controller of the angularTrainingMvpApp
  */
 angular.module('angularTrainingMvpApp')
-  .controller('DashboardCtrl',['$scope', 'dataService', function ($scope, dataService) {
+  .controller('DashboardCtrl',['$scope', 'dataService', '$location', function ($scope, dataService, $location) {
    	
    	$scope.users = dataService.getUserData();
    	console.debug($scope.users)
@@ -19,10 +19,10 @@ angular.module('angularTrainingMvpApp')
    			return false;
    		}else{
    			
-   			var xebiaId, xebeeName = $scope.searchContent;				
+   			var empId, searchContent = $scope.searchContent;				
    			angular.forEach($scope.users,function(val, index){
-   				if(xebeeName == val.NAME){
-   					xebiaId = val.ID;
+   				if(searchContent.NAME == val.NAME){
+   					empId = val.ID;
    					dataService.setSearchedData(val);
    					return false
    				}
@@ -31,7 +31,7 @@ angular.module('angularTrainingMvpApp')
    				alert("No Data Matched")
    				return false;
    			}
-   			$location.path( "/profile/"+xebiaId );
+   			$location.path( "/profile/"+empId );
    		}
 
    		
